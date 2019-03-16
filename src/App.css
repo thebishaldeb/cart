@@ -1,1 +1,41 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
+
+/*============ FOOTER ============*/
+
+.Rectangle-17-Copy-2 {
+  width: 100%;
+  padding: 3% 5%;
+  background-color: #211f1f;
+}
+
+.FooterHead {
+  overflow: hidden;
+  font-family: AvenirNext;
+  margin: 10% 5% 3% 2%;
+  font-size: 25px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.2px;
+  color: #ffffff;
+}
+
+footer a,
+footer a:hover {
+  color: inherit;
+}
+
+.FooterContent {
+  overflow: hidden;
+  font-family: AvenirNext;
+  font-size: 15px;
+  margin: 10% 0 10% 2%;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  color: #ffffff;
+  margin-bottom: 5%;
+}
