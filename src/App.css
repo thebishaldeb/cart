@@ -1,4 +1,17 @@
 @import "~antd/dist/antd.css";
+/*============ PRODUCTS ===========*/
+.goToCart {
+  width: 100%;
+  background-color: #7ee6d1;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 0 1% 4% 1%;
+}
+.goToCart:hover {
+  background-color: #7ee6d1;
+  color: white;
+}
 /*============ CHECKOUT ===========*/
 .payment {
   margin: 2%;

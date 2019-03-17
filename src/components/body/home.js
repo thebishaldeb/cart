@@ -38,14 +38,17 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Button onClick={this.cartToggle} bsSize="small" bsStyle="danger">Cart
-        </Button>
         {this.state.cartButton === true ? (
           <Row>
-            <Cart />
+            <Cart cartToggle={this.cartToggle} />
           </Row>
         ) : (
-          <div>{this.renderProducts()}</div>
+          <div>
+            <Button className="goToCart" onClick={this.cartToggle}>
+              Go To Cart
+            </Button>
+            {this.renderProducts()}
+          </div>
         )}
       </div>
     );
@@ -66,12 +69,12 @@ class ProductItem extends Component {
             />
           }
           actions={[
-                <Button
-                  onClick={() => this.props.handleOnAdd(this.props.product)}
-                  bsStyle="primary"
-                >
-                  Add to Cart
-                </Button>
+            <Button
+              onClick={() => this.props.handleOnAdd(this.props.product)}
+              bsStyle="primary"
+            >
+              Add to Cart
+            </Button>
           ]}
         >
           <Meta
