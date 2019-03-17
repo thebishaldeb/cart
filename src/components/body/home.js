@@ -44,9 +44,9 @@ class Home extends Component {
           </Row>
         ) : (
           <div>
-            <Button className="goToCart" onClick={this.cartToggle}>
+            <button className="goToCart" onClick={this.cartToggle}>
               Go To Cart
-            </Button>
+            </button>
             {this.renderProducts()}
           </div>
         )}
@@ -58,7 +58,7 @@ class Home extends Component {
 class ProductItem extends Component {
   render() {
     return (
-      <Col xs={24} lg={6} sm={12}>
+      <Col style={{overflow:"hidden"}} xs={24} lg={8} sm={12}>
         <Card
           style={{ height: 600, margin: "20px" }}
           cover={
@@ -82,10 +82,10 @@ class ProductItem extends Component {
             description={this.props.product.description}
           />
           <hr />
-          <strong>Rent: INR {this.props.product.rent}</strong>
+          <strong>Rent: &#8377; {this.props.product.rent}</strong>
           <br />
           <strong>
-            Refundundable deposit: INR {this.props.product.refund}
+            Refundundable deposit: &#8377; {this.props.product.refund}
           </strong>
         </Card>
       </Col>

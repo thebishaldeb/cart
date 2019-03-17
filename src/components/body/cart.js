@@ -6,7 +6,6 @@ import { deleteFromCart } from "../../actions/cartActions";
 import { Row, Col, Button, Steps, Card, Icon } from "antd";
 
 const Step = Steps.Step;
-const { Meta } = Card;
 
 class Cart extends React.Component {
   renderCart() {
@@ -38,24 +37,63 @@ class Cart extends React.Component {
   cartTotal() {
     return (
       <div>
-        <Row>
-          <Col xs={12} sm={6}>
-            <h4>
-              TOTAL:{" "}
-              <div pullRight>
-                Price: INR {this.totalAmount(this.props.cart)}
-              </div>
-            </h4>
-          </Col>
-        </Row>
+        <Card className="CheckoutList">
+          <h2>Cart Summary</h2>
+          {this.props.cart.map((item, key)=> (
+            <div>
+              <strong>Item {key+1}:</strong>
+              <p>Rent per day  <div style={{ float: "right" }}>&#8377; {item.rent}</div></p>
+              <p>
+              &#8377; {item.rent}/- <Icon type="close" /> {item.days}days <div style={{ float: "right" }}>&#8377; {item.rent*item.days}</div>
+          </p>
+            </div>
+          ))}
+          <hr/>
+          <p>
+            Total<div style={{ float: "right" }}>&#8377; {this.totalRent(this.props.cart)}</div>
+          </p>
+          <p>
+            25% Multi day discount{" "}
+            <div style={{ float: "right", color: "#23b195" }}>-&#8377; 
+              {0.25 * this.totalRent(this.props.cart)}
+            </div>
+          </p>
+          <p>
+            Service fee <div style={{ float: "right" }}>&#8377; 100</div>
+          </p>
+          <hr />
+          <h3>
+            Total rent amount{" "}
+            <strong style={{ float: "right", color: "#23b195" }}>&#8377; 
+              {this.totalAmount(this.props.cart)}
+            </strong>
+          </h3>
+          <p>
+            Refundable deposit{" "}
+            <div style={{ float: "right" }}>&#8377; {this.Refund(this.props.cart)}</div>
+          </p>
+          <Button className="goToCheckout">Checkout</Button>
+        </Card>
       </div>
     );
   }
-  totalAmount(cartArray) {
+  totalRent(cartArray) {
     return cartArray.reduce((acum, item) => {
-      acum += item.price * item.units;
+      acum += item.days * item.rent;
       return acum;
     }, 0);
+  }
+  Refund(cartArray) {
+    return cartArray.reduce((acum, item) => {
+      acum += item.refund;
+      return acum;
+    }, 0);
+  }
+  totalAmount(cartArray) {
+    let total = this.totalRent(cartArray);
+    total -= 0.25 * total;
+    total += 100;
+    return total;
   }
 
   render() {
@@ -69,7 +107,7 @@ class Cart extends React.Component {
             <Step title="Payment options" />
             <Step title="Order Status" />
           </Steps>
-          <Row style={{marginBottom: "20px"}}>
+          <Row >
             <Col sm={12} md={12} xl={12}>
               <div style={{ fontSize: "18px" }}>
                 <strong>My cart - </strong>
@@ -77,7 +115,7 @@ class Cart extends React.Component {
               </div>
               <div style={{ fontSize: "18px" }}>
                 Total rent:{" "}
-                <strong>{this.totalAmount(this.props.cart)} INR</strong>
+                <strong>&#8377; {this.totalRent(this.props.cart)} </strong>
               </div>
             </Col>
             <Col sm={12} md={12} xl={12}>
@@ -87,10 +125,10 @@ class Cart extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col sm={24} md={14} xl={14}>
+            <Col style={{marginTop: "20px", marginBottom: "20px"}} sm={24} md={14} xl={14}>
               {this.renderCart()}
             </Col>
-            <Col sm={24} md={10} xl={8}>
+            <Col sm={24} md={8} xl={8}>
               {this.cartTotal()}
             </Col>
           </Row>
@@ -120,10 +158,10 @@ class CartItem extends React.Component {
           <img className="cartImg" src={this.props.cartItem.image} />
           <Row className="cartDes">
             <div className="cartTitle">{this.props.cartItem.title}</div>
-            <Col style={{paddingRight: "3%"}} sm={12} md={12} xl={12}>
+            <Col style={{ paddingRight: "3%" }} sm={12} md={12} xl={12}>
               Refundundable deposit
               <br />
-              <strong>INR {this.props.cartItem.refund}</strong>
+              <strong style={{color: "#23b195"}}>&#8377; {this.props.cartItem.refund}</strong>
               <br />
               Rental period <br />
               <strong>
@@ -133,7 +171,7 @@ class CartItem extends React.Component {
             </Col>
             <Col sm={12} md={12} xl={12}>
               Rent <br />
-              <strong>INR {this.props.cartItem.rent}</strong>
+              <strong>&#8377; {this.props.cartItem.rent}</strong>
               <br />
               Days: <br />
               <strong>{this.props.cartItem.days}</strong>
