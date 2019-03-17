@@ -20,7 +20,7 @@
 
 .steps {
   width: 100%;
-  padding: 1% 5%;
+  padding: 1% 5% 10% 5%;
 }
 
 /*============ HEADER =========== */
@@ -43,6 +43,19 @@
 .HeaderLogo {
   float: left;
   margin-right: 20px;
+}
+.Add-more-products {
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.2px;
+  text-align: right;
+  color: #23b195;
+}
+.Add-more-products:hover {
+  color: #23b195;
 }
 
 .HeaderSearch {

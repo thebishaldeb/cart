@@ -3,9 +3,10 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { deleteFromCart } from "../../actions/cartActions";
-import { Row, Col, Button, Steps } from "antd";
+import { Row, Col, Button, Steps, Card } from "antd";
 
 const Step = Steps.Step;
+const { Meta } = Card;
 
 class Cart extends React.Component {
   renderCart() {
@@ -68,12 +69,32 @@ class Cart extends React.Component {
             <Step title="Payment options" />
             <Step title="Order Status" />
           </Steps>
-          <div className="cart">
-            {this.renderCart()}
-          </div>
-          <div>
-            {this.cartTotal()}
-          </div>
+          <div className="cart" />
+          <Row>
+            <Col sm={12} md={12} xl={12}>
+              <div style={{ fontSize: "18px" }}>
+                <strong>My cart - </strong>
+                {this.props.cart.length} items
+              </div>
+              <div style={{ fontSize: "18px" }}>
+                Total rent:{" "}
+                <strong>{this.totalAmount(this.props.cart)} INR</strong>
+              </div>
+            </Col>
+            <Col sm={12} md={12} xl={12}>
+              <a className="Add-more-products" onClick={this.props.cartToggle}>
+                Add more products
+              </a>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={24} md={14} xl={12}>
+              {this.renderCart()}
+            </Col>
+            <Col sm={24} md={10} xl={8}>
+              {this.cartTotal()}
+            </Col>
+          </Row>
         </div>
       );
     }
@@ -86,30 +107,36 @@ class CartItem extends React.Component {
   render() {
     return (
       <div className="cartItem">
-        <Row>
-          <Col xs={12} sm={6}>
-            <h5>
-              {this.props.cartItem.title}{" "}
-              <div pullRight>Price: INR {this.props.cartItem.rent}</div>
-            </h5>
-          </Col>
-          <Col xs={6} sm={4}>
-            <p>
-              No of days :&nbsp;
-              <div bsStyle="success"> {this.props.cartItem.days} </div>
-              &nbsp;
-            </p>
-          </Col>
-          <Col xs={6} sm={2}>
-            <Button
-              onClick={() => this.props.handleDeleteFromCart()}
-              bsSize="small"
-              bsStyle="danger"
-            >
-              DEL
-            </Button>
-          </Col>
-        </Row>
+        <Card>
+          <Meta
+            style={{ height: "100%", width: "30%" }}
+            avatar={
+              <img
+                style={{ height: "100%", width: "30%" }}
+                src={this.props.cartItem.image}
+              />
+            }
+            title={this.props.cartItem.title}
+          />
+          <strong>
+            Refundundable deposit: INR {this.props.cartItem.refund}
+          </strong>
+          <hr />
+          <strong>Rent: INR {this.props.cartItem.rent}</strong>
+          <strong>
+            Rental period : {this.props.cartItem.date.start} -{" "}
+            {this.props.cartItem.date.end}
+          </strong>
+          <strong>Days: {this.props.cartItem.days}</strong>
+          <br />
+          <Button
+            onClick={() => this.props.handleDeleteFromCart()}
+            bsSize="small"
+            bsStyle="danger"
+          >
+            DEL
+          </Button>
+        </Card>
       </div>
     );
   }
