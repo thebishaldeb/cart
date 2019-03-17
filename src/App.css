@@ -68,6 +68,7 @@ header div a:hover {
 /*============ FOOTER ============*/
 
 .Rectangle-17-Copy-2 {
+  overflow: hidden;
   width: 100%;
   padding: 3% 5%;
   background-color: #211f1f;

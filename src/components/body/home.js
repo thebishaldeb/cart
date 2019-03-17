@@ -3,22 +3,34 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { addToCart } from "../../actions/cartActions";
-import { Row, Col, Button } from "antd";
+import { Row, Col, Button, Card } from "antd";
 import Cart from "./cart";
 
+const { Meta } = Card;
+
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.cartToggle = this.cartToggle.bind(this);
+    this.state = {
+      cart: false
+    };
+  }
+  cartToggle() {
+    if (this.state.cart === true) this.setState({ cart: false });
+    else this.setState({ cart: true });
+  }
   dispachAddToCart(product) {
     this.props.addToCart(product);
   }
   renderProducts() {
     return this.props.products.map(p => {
       return (
-        <Col className="productsList" xs={12} sm={6} md={4} key={p.id}>
-          <ProductItem
-            handleOnAdd={this.dispachAddToCart.bind(this)}
-            product={p}
-          />
-        </Col>
+        <ProductItem
+          cart={this.state.cart}
+          handleOnAdd={this.dispachAddToCart.bind(this)}
+          product={p}
+        />
       );
     });
   }
@@ -26,13 +38,15 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Row>
-          <h1>Welcome to LensHood Rent Cart</h1>
-        </Row>
-        <Row>
-          <Cart />
-        </Row>
-        <Row style={{ margin: "15px" }}>{this.renderProducts()}</Row>
+        <Button onClick={this.cartToggle} bsSize="small" bsStyle="danger">Cart
+        </Button>
+        {this.state.cart === true ? (
+          <Row>
+            <Cart />
+          </Row>
+        ) : (
+          <div>{this.renderProducts()}</div>
+        )}
       </div>
     );
   }
@@ -41,21 +55,37 @@ class Home extends Component {
 class ProductItem extends Component {
   render() {
     return (
-      <div>
-        <Row>
-          <Col xs={12} className="productItem">
-            <h4>{this.props.product.title}</h4>
-            <p>{this.props.product.description}</p>
-            <p>Price: INR {this.props.product.price}</p>
-            <Button
-              onClick={() => this.props.handleOnAdd(this.props.product)}
-              bsStyle="primary"
-            >
-              ADD
-            </Button>
-          </Col>
-        </Row>
-      </div>
+      <Col xs={24} lg={6} sm={12}>
+        <Card
+          style={{ height: 600, margin: "20px" }}
+          cover={
+            <img
+              style={{ height: 300 }}
+              src={this.props.product.image}
+              alt={this.props.product.title}
+            />
+          }
+          actions={[
+                <Button
+                  onClick={() => this.props.handleOnAdd(this.props.product)}
+                  bsStyle="primary"
+                >
+                  Add to Cart
+                </Button>
+          ]}
+        >
+          <Meta
+            title={this.props.product.title}
+            description={this.props.product.description}
+          />
+          <hr />
+          <strong>Rent: INR {this.props.product.rent}</strong>
+          <br />
+          <strong>
+            Refundundable deposit: INR {this.props.product.refund}
+          </strong>
+        </Card>
+      </Col>
     );
   }
 }
@@ -73,7 +103,6 @@ function mapActionsToProps(dispatch) {
     dispatch
   );
 }
-
 export default connect(
   mapStateToProps,
   mapActionsToProps
