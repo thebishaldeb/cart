@@ -3,7 +3,7 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { deleteFromCart } from "../../actions/cartActions";
-import { Row, Col, Button, Steps, Card } from "antd";
+import { Row, Col, Button, Steps, Card, Icon } from "antd";
 
 const Step = Steps.Step;
 const { Meta } = Card;
@@ -69,7 +69,7 @@ class Cart extends React.Component {
             <Step title="Payment options" />
             <Step title="Order Status" />
           </Steps>
-          <Row>
+          <Row style={{marginBottom: "20px"}}>
             <Col sm={12} md={12} xl={12}>
               <div style={{ fontSize: "18px" }}>
                 <strong>My cart - </strong>
@@ -87,7 +87,7 @@ class Cart extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col sm={24} md={14} xl={12}>
+            <Col sm={24} md={14} xl={14}>
               {this.renderCart()}
             </Col>
             <Col sm={24} md={10} xl={8}>
@@ -100,8 +100,9 @@ class Cart extends React.Component {
 
     return (
       <div className="cart">
-        <div style={{margin: "20px"}}>
-          Nothing in the cart currently. Add Some cool stuffs in your cart and come back again.
+        <div style={{ margin: "20px" }}>
+          Nothing in the cart currently. Add Some cool stuffs in your cart and
+          come back again.
         </div>
         <a className="Add-more-products" onClick={this.props.cartToggle}>
           Add more products
@@ -115,35 +116,40 @@ class CartItem extends React.Component {
   render() {
     return (
       <div className="cartItem">
-        <Card>
-          <Meta
-            style={{ height: "100%", width: "30%" }}
-            avatar={
-              <img
-                style={{ height: "100%", width: "30%" }}
-                src={this.props.cartItem.image}
-              />
-            }
-            title={this.props.cartItem.title}
-          />
-          <strong>
-            Refundundable deposit: INR {this.props.cartItem.refund}
-          </strong>
-          <hr />
-          <strong>Rent: INR {this.props.cartItem.rent}</strong>
-          <strong>
-            Rental period : {this.props.cartItem.date.start} -{" "}
-            {this.props.cartItem.date.end}
-          </strong>
-          <strong>Days: {this.props.cartItem.days}</strong>
-          <br />
-          <Button
-            onClick={() => this.props.handleDeleteFromCart()}
-            bsSize="small"
-            bsStyle="danger"
-          >
-            DEL
-          </Button>
+        <Card className="cartCard">
+          <img className="cartImg" src={this.props.cartItem.image} />
+          <Row className="cartDes">
+            <div className="cartTitle">{this.props.cartItem.title}</div>
+            <Col style={{paddingRight: "3%"}} sm={12} md={12} xl={12}>
+              Refundundable deposit
+              <br />
+              <strong>INR {this.props.cartItem.refund}</strong>
+              <br />
+              Rental period <br />
+              <strong>
+                {this.props.cartItem.date.start} -{" "}
+                {this.props.cartItem.date.end}
+              </strong>
+            </Col>
+            <Col sm={12} md={12} xl={12}>
+              Rent <br />
+              <strong>INR {this.props.cartItem.rent}</strong>
+              <br />
+              Days: <br />
+              <strong>{this.props.cartItem.days}</strong>
+            </Col>
+          </Row>
+          <div className="editButtons">
+            <Button className="editAndDelete">
+              <Icon type="edit" />
+            </Button>
+            <Button
+              className="editAndDelete"
+              onClick={() => this.props.handleDeleteFromCart()}
+            >
+              <Icon type="close" />
+            </Button>
+          </div>
         </Card>
       </div>
     );

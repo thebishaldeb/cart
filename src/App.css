@@ -13,6 +13,47 @@
   color: white;
 }
 /*============ CHECKOUT ===========*/
+.cartItem {
+  padding: 0;
+  margin-right: 30px;
+}
+
+.cartCard {
+  margin: 0;
+  padding: 0;
+}
+
+.editButtons {
+  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.editAndDelete {
+  border: 0;
+}
+
+.cartImg {
+  width:32%;
+  height: 120px;
+  margin: 0;
+  margin-right: 8%;
+  overflow: hidden;
+}
+.cartTitle {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  color: #4a4a4a;
+  margin-bottom: 2%;
+}
+.cartDes {
+  font-size: 12px;
+  width: 60%;
+  float: right;
+}
+
 .payment {
   margin: 2%;
 }
