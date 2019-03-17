@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Icon } from 'antd';
+import { Row, Col, Icon } from "antd";
 
 const Footer = () => {
   return (
@@ -20,35 +20,69 @@ const Footer = () => {
       </Row>
       <Row type="flex" justify="center">
         <Col className="FooterCol" span={5}>
-          <div className="FooterContent"><a href="#">About us</a></div>
-          <div className="FooterContent"><a href="#">Terms of service</a></div>
-          <div className="FooterContent"><a href="#">Privacy Policy</a></div>
-          <div className="FooterContent"><a href="#">Community Rules</a></div>
-          <div className="FooterContent"><a href="#">Mission</a></div>
+          <div className="FooterContent">
+            <a href="#">About us</a>
+          </div>
+          <div className="FooterContent">
+            <a href="#">Terms of service</a>
+          </div>
+          <div className="FooterContent">
+            <a href="#">Privacy Policy</a>
+          </div>
+          <div className="FooterContent">
+            <a href="#">Community Rules</a>
+          </div>
+          <div className="FooterContent">
+            <a href="#">Mission</a>
+          </div>
         </Col>
         <Col className="FooterCol" span={5}>
-          <div className="FooterContent"><a href="#">Renting</a></div>
-          <div className="FooterContent"><a href="#">Lending</a></div>
-          <div className="FooterContent"><a href="#">FAQ</a></div>
+          <div className="FooterContent">
+            <a href="#">Renting</a>
+          </div>
+          <div className="FooterContent">
+            <a href="#">Lending</a>
+          </div>
+          <div className="FooterContent">
+            <a href="#">FAQ</a>
+          </div>
         </Col>
         <Col className="FooterCol" span={5}>
-          <div className="FooterContent">Write to us: <br/> contact@lenshood.in</div>
-          <div className="FooterContent">For any inquiry: <br /> +91-9085525859</div>
+          <div className="FooterContent">
+            Write to us: <br /> contact@lenshood.in
+          </div>
+          <div className="FooterContent">
+            For any inquiry: <br /> +91-9085525859
+          </div>
         </Col>
         <Col className="FooterCol" span={5}>
-          <div className="FooterContent"><a href="#">Blog</a></div>
+          <div className="FooterContent">
+            <a href="#">Blog</a>
+          </div>
           <div className="">
             <a href="#">
-              <Icon className="social-media-icons" type="facebook" theme="filled" />
+              <Icon
+                className="social-media-icons"
+                type="facebook"
+                theme="filled"
+              />
             </a>
             <a href="#">
-              <Icon className="social-media-icons" type="linkedin" theme="filled"/>
+              <Icon
+                className="social-media-icons"
+                type="linkedin"
+                theme="filled"
+              />
             </a>
             <a href="#">
-              <Icon className="social-media-icons" type="instagram" theme="filled"/>
+              <Icon
+                className="social-media-icons"
+                type="instagram"
+                theme="filled"
+              />
             </a>
             <a href="#">
-              <Icon className="social-media-icons" type="twitter"/>
+              <Icon className="social-media-icons" type="twitter" />
             </a>
           </div>
         </Col>
