@@ -13,12 +13,12 @@ class Home extends Component {
     super(props);
     this.cartToggle = this.cartToggle.bind(this);
     this.state = {
-      cart: false
+      cartButton: false
     };
   }
   cartToggle() {
-    if (this.state.cart === true) this.setState({ cart: false });
-    else this.setState({ cart: true });
+    if (this.state.cartButton === true) this.setState({ cartButton: false });
+    else this.setState({ cartButton: true });
   }
   dispachAddToCart(product) {
     this.props.addToCart(product);
@@ -40,7 +40,7 @@ class Home extends Component {
       <div>
         <Button onClick={this.cartToggle} bsSize="small" bsStyle="danger">Cart
         </Button>
-        {this.state.cart === true ? (
+        {this.state.cartButton === true ? (
           <Row>
             <Cart />
           </Row>
