@@ -69,7 +69,6 @@ class Cart extends React.Component {
             <Step title="Payment options" />
             <Step title="Order Status" />
           </Steps>
-          <div className="cart" />
           <Row>
             <Col sm={12} md={12} xl={12}>
               <div style={{ fontSize: "18px" }}>
@@ -99,7 +98,16 @@ class Cart extends React.Component {
       );
     }
 
-    return <aside className="cart">cart empty</aside>;
+    return (
+      <div className="cart">
+        <div style={{margin: "20px"}}>
+          Nothing in the cart currently. Add Some cool stuffs in your cart and come back again.
+        </div>
+        <a className="Add-more-products" onClick={this.props.cartToggle}>
+          Add more products
+        </a>
+      </div>
+    );
   }
 }
 
