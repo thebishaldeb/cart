@@ -39,3 +39,9 @@ footer a:hover {
   color: #ffffff;
   margin-bottom: 5%;
 }
+
+.social-media-icons {
+    width: 28px;
+    height: 28px;
+    color:white;
+  }

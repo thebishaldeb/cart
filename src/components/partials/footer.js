@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col } from 'antd';
+import { Row, Col, Icon } from 'antd';
 
 const Footer = () => {
   return (
@@ -37,7 +37,20 @@ const Footer = () => {
         </Col>
         <Col className="FooterCol" span={5}>
           <div className="FooterContent"><a href="#">Blog</a></div>
-          <div className=""></div>
+          <div className="">
+            <a href="#">
+              <Icon className="social-media-icons" type="facebook" theme="filled" />
+            </a>
+            <a href="#">
+              <Icon className="social-media-icons" type="linkedin" theme="filled"/>
+            </a>
+            <a href="#">
+              <Icon className="social-media-icons" type="instagram" theme="filled"/>
+            </a>
+            <a href="#">
+              <Icon className="social-media-icons" type="twitter"/>
+            </a>
+          </div>
         </Col>
       </Row>
     </footer>
